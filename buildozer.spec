@@ -47,6 +47,9 @@ requirements = python3,kivy
 # (int) Android NDK version to use
 android.ndk = 25b
 
+# (bool) Indicate if you accept the Android SDK license
+android.accept_sdk_license = True
+
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
