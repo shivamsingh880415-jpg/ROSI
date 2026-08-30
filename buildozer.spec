@@ -1,17 +1,37 @@
-[app]
+name: Build APK
 
-title = ROSI AI Assistant
-package.name = rosiai
-package.domain = com.rosi.ai
-source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
-version = 0.1
+on:
+  push:
+    branches: [ main ]
 
-requirements = python3,kivy
+jobs:
+  build:
+    runs-on: ubuntu-22.04
 
-android.api = 31
-android.minapi = 21
-android.ndk = 23b
-android.accept_sdk_license = True
+    steps:
+    - uses: actions/checkout@v4
 
-orientation = portrait
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+
+    - name: Install Buildozer and Cython
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade buildozer cython virtualenv
+
+    - name: Build APK
+      run: |
+        buildozer -v android debug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: package
+        path: bin/*.apk
