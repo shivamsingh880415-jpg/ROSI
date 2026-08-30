@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+        uses: ziirish/buildozer-action@v1
         id: buildozer
         with:
           command: buildozer -v android debug
@@ -19,3 +19,4 @@ jobs:
         with:
           name: package
           path: bin/*.apk
+          
