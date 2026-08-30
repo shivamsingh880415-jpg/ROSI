@@ -9,10 +9,10 @@ version = 0.1
 
 requirements = python3,kivy
 
-# API and SDK fixed versions
+# API and SDK settings
 android.api = 31
 android.minapi = 21
-android.ndk = 25b
+android.ndk = 20
 android.accept_sdk_license = True
 
 orientation = portrait
