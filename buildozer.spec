@@ -14,4 +14,7 @@ android.minapi = 21
 android.ndk = 23b
 android.accept_sdk_license = True
 
+# Debugging aur log ke liye
+log_level = 2
+
 orientation = portrait
